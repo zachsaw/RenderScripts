@@ -131,6 +131,11 @@ namespace Mpdn.RenderScript
 
         public virtual void AllocateTextures()
         {
+            foreach (var filter in InputFilters)
+            {
+                filter.AllocateTextures();
+            }
+            
             var size = OutputSize;
             if (OutputTexture == null || size.Width != OutputTexture.Width || size.Height != OutputTexture.Height)
             {
@@ -139,11 +144,6 @@ namespace Mpdn.RenderScript
                     Common.Dispose(OutputTexture);
                 }
                 OutputTexture = null;
-            }
-
-            foreach (var filter in InputFilters)
-            {
-                filter.AllocateTextures();
             }
 
             if (OutputTexture == null)
