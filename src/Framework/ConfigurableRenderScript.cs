@@ -49,7 +49,7 @@ namespace Mpdn.RenderScript
         [YAXSerializeAs("Settings")]
         public override TChain Chain
         { 
-            get { return ScriptConfig.Config; }
+            get { return ScriptConfig == null ? null : ScriptConfig.Config; }
             set { ScriptConfig = new Config(value); } 
         }
 
